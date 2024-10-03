@@ -97,11 +97,13 @@ The development process used the Agile methodology to prioritize and implement f
 
 ### Features
 
+## Existing Features
 - **User Authentication:** Users can log in, log out, and manage their profiles.
 - **Room Management:** Users can add, edit, and delete rooms.
 - **Light Management:** Each room can have multiple lights, which users can toggle on or off via the web interface then send command to ESP32 device.
 - **ESP32 Integration:** The project sends requests to the ESP32 device to control the lights.
-- **User Settings:** Users can configure personal preferences such as email notifications, light scheduling, and device IP management.
+
+
 - **Background Task:** A background thread checks the status of the home automation system periodically.
 
 - **Device Management**: Users can add, configure, and control lights and rooms.
@@ -121,7 +123,6 @@ The development process used the Agile methodology to prioritize and implement f
 
   ![Dynamic Offline State Icon](static/images/screenshots/dinamic_offline_state_icon.PNG)
 
-### Existing Features
 
 - **User Authentication**: Users can sign up, log in, and manage their accounts.
 
@@ -152,6 +153,8 @@ The development process used the Agile methodology to prioritize and implement f
 
   ![Number of Room Icon](static/images/screenshots/number_of_room_icon.PNG)
 
+- **Remote Firmware Update**: Users can remotely update the firmware of their smart home devices to ensure they are running the latest version with security patches and new features.
+  ![Update_page](static\images\screenshots\update_firmware.PNG)
 [Back to top](#top)
 
 ---
