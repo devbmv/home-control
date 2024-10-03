@@ -5,6 +5,37 @@ This project controls lights using a Django app deployed on Heroku and an ESP32 
 
 ---
 
+# Table of Contents
+
+1. [Home Control Project](#home-control-project)
+2. [Setting Up Django Locally](#1-setting-up-django-locally)
+   - [Prerequisites](#prerequisites)
+   - [Step-by-Step](#step-by-step)
+3. [Deploying to Heroku](#2-deploying-to-heroku)
+   - [Prerequisites](#prerequisites-1)
+   - [Step-by-Step](#step-by-step-1)
+4. [Setting Up the ESP32 Server Using VSCode + PlatformIO](#3-setting-up-the-esp32-server-using-vscode--platformio)
+   - [Prerequisites](#prerequisites-2)
+   - [Step-by-Step](#step-by-step-2)
+5. [Setting Up Dynamic DNS Using NO-IP](#4-setting-up-dynamic-dns-using-no-ip)
+   - [Step-by-Step](#step-by-step-3)
+6. [Setting Up Environment Variables for ESP32 Project](#6-setting-up-environment-variables-for-esp32-project)
+   - [For Windows](#for-windows)
+   - [For Linux](#for-linux)
+7. [Troubleshooting Tips](#6-troubleshooting-tips)
+   - [Debugging Django Locally](#debugging-django-locally)
+   - [ESP32 Connectivity Issues](#esp32-connectivity-issues)
+8. [Future Automation Implementations](#7-future-automation-implementations)
+9. [Legal Disclaimer & Security Considerations](#legal-disclaimer--security-considerations)
+   - [Disclaimer](#disclaimer)
+   - [Additional Security Considerations](#additional-security-considerations)
+10. [Security Best Practices for Smart Home Devices](#security-best-practices-for-smart-home-devices)
+   - [Further Reading](#further-reading)
+
+> **Note**: Please refer to the [Legal Disclaimer & Security Considerations](#legal-disclaimer--security-considerations) section at the end of this document before deploying the application to ensure safe and secure usage.
+
+
+
 ## 1. Setting Up Django Locally
 
 ### Prerequisites:
@@ -89,12 +120,15 @@ This project controls lights using a Django app deployed on Heroku and an ESP32 
 
 3. **Set up environment variables on Heroku**:
    ```bash
-   heroku config:set SECRET_KEY=your_secret_key DEBUG=False CLOUDINARY_URL=your_cloudinary_url DJANGO_API_USERNAME=your_api_username DJANGO_API_PASSWORD=your_api_password
+   heroku config:set SECRET_KEY=your_secret_key DEBUG=False CLOUDINARY_URL=your_cloudinary_url DJANGO_API_USERNAME=your_api_username DJANGO_API_PASSWORD=your_api_password 
+   CSRF_TRUSTED_ORIGINS="http://your_it_or_other_origin,other,other,..."
+   ALLOWED_HOSTS="http://your_it_or_other_origin,other,other,..."
    ```
 
 4. **Add Heroku PostgreSQL**:
+      if needed:
    ```bash
-   heroku addons:create heroku-postgresql:hobby-dev
+   heroku addons:create heroku-postgresql:hobby-dev 
    ```
 
 5. **Disable `collectstatic` if needed**:
@@ -188,13 +222,9 @@ To access your ESP32 device remotely, you will need to set up a Dynamic DNS serv
    - This ensures that your public IP is always updated.
 
 4. **Add the NO-IP domain to Django**:
-   - Modify your `ALLOWED_HOSTS` in Django’s `settings.py` to include your NO-IP domain:
+   - Modify your `ALLOWED_HOSTS` in Django’s `env.py localy or in heroku env ` to include your NO-IP domain:
      ```python
-     ALLOWED_HOSTS = [
-         "your-noip-domain.ddns.net",
-         "127.0.0.1",
-         "localhost",
-     ]
+   heroku config:set CSRF_TRUSTED_ORIGINS="your_no_ip_site,yours_other_trusted_origins"
      ```
 
 5. **Port Forwarding**:
@@ -252,3 +282,69 @@ You need to set environment variables on your system for Wi-Fi and Django creden
 Once the light control functionality is working, you can expand to other automations (such as temperature control or motion detection). You’ll follow a similar process, modifying the `Light` model or add new models and creating new devices that interact with your ESP32 server.
 
 ---
+
+
+
+---
+
+## Legal Disclaimer & Security Considerations
+
+### Disclaimer
+
+This project, **Smart Home Control**, is intended solely for **educational purposes**. The author of this project assumes **no liability or responsibility** for any damage, harm, or unintended consequences that may arise from the use, modification, or deployment of this software. Users who choose to implement this software or integrate it into their systems do so **at their own risk**.
+
+- This project is provided "as-is" without any warranties, guarantees, or assurances regarding its safety, reliability, or fitness for a particular purpose.
+- Any damage caused by improper use, setup, or integration into third-party devices or networks is **solely the responsibility** of the user.
+- **Port forwarding** or other networking configurations may expose your devices to external threats. It is your responsibility to ensure that your home network and devices are secure.
+
+### Additional Security Considerations
+
+1. **Port Forwarding**: If you plan to access your home automation system remotely, you may consider using port forwarding to allow external access to your server or devices. However, doing so can introduce serious security risks, such as unauthorized access to your home network.
+   - **Use VPN**: For enhanced security, consider setting up a Virtual Private Network (VPN) to remotely access your home network securely rather than exposing your devices through port forwarding.
+   - **Firewall Configuration**: Ensure your firewall is properly configured to block any unwanted traffic and to allow only necessary connections to your devices.
+
+2. **Strong Passwords**: Ensure that all passwords, including those for the Django admin interface, your Wi-Fi network, and any API or device credentials, are strong and secure. Use a combination of uppercase and lowercase letters, numbers, and symbols.
+
+3. **SSL/TLS Encryption**: It is strongly recommended that you use SSL/TLS encryption for all communication between the server (Django) and the devices (ESP32), especially if you plan to expose the system to the internet. This can help protect against Man-in-the-Middle (MitM) attacks.
+   - Set up SSL certificates for your server.
+   - Use `https` for web traffic and secure protocols for any device communications.
+
+4. **Regular Updates**: Ensure that you keep the server, devices (ESP32), and libraries up-to-date with the latest security patches and firmware updates.
+   - Check regularly for updates to the project’s dependencies and apply them where necessary.
+
+5. **Access Control**: Only allow authorized users to manage or access your home devices. Consider implementing **role-based access control** (RBAC) and **two-factor authentication** (2FA) for critical systems.
+
+6. **Cloud Services Security**: If you are using cloud services like **Heroku** or **Cloudinary**:
+   - Ensure that your API keys and credentials are not exposed in the source code.
+   - Use environment variables to store sensitive information, such as `SECRET_KEY`, database credentials, and any third-party API tokens.
+
+7. **Public Deployment**: If you deploy this project on a public platform (e.g., Heroku), be cautious about exposing it to the internet. Misconfiguration could lead to unauthorized access. Always follow best practices for securing a web application, including **securing the admin interface**, **disabling unnecessary features in production**, and **monitoring logs for suspicious activity**.
+
+---
+
+## Security Best Practices for Smart Home Devices
+
+When integrating IoT devices such as the ESP32, follow these additional guidelines to secure your smart home system:
+
+1. **Device Isolation**: Consider setting up a separate network or VLAN for IoT devices. This ensures that even if a device is compromised, the attacker won't have access to the rest of your network.
+   
+2. **Update Firmware Regularly**: IoT devices often have vulnerabilities that are patched through firmware updates. Regularly update the firmware of the ESP32 and any other connected devices to mitigate known security risks.
+
+3. **Secure Communication**: Use **HTTPS** and **WebSocket Secure (WSS)** protocols for secure communication between the Django server and ESP32 devices. This will ensure that data is transmitted securely over the network, preventing unauthorized interception.
+
+4. **Disable Unused Services**: Disable any services or ports on the ESP32 that are not in use. Reducing the number of open ports decreases the attack surface.
+
+5. **Logging and Monitoring**: Implement logging and monitoring tools on your Django server to track access attempts and potential security breaches. Configure notifications for suspicious activity or failed login attempts.
+
+### Further Reading
+
+For more detailed information on securing IoT and web applications, consider reviewing the following resources:
+
+- [OWASP IoT Security Guidelines](https://owasp.org/www-project-internet-of-things/)
+- [OWASP Top 10 Web Application Security Risks](https://owasp.org/www-project-top-ten/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+
+---
+
+By following these security guidelines and taking appropriate precautions, you can help mitigate risks and protect your home automation system from unauthorized access or exploitation.
+

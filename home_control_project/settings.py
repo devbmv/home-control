@@ -23,7 +23,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Load debug mode from environment variables, default to False
-DEBUG = os.getenv("DEBUG", "False") == "False"
+DEBUG = os.getenv("DEBUG", "True") == "False"
 
 # Allowed hosts configuration for both local and production environments
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(',')
