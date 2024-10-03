@@ -6,6 +6,8 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import django_heroku
+import json
+
 # Load environment variables from 'env.py' if the file exists
 if os.path.isfile(os.path.join(Path(__file__).resolve().parent.parent,
                                "env.py")):
@@ -24,16 +26,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "False"
 
 # Allowed hosts configuration for both local and production environments
-ALLOWED_HOSTS = [
-    ".herokuapp.com",
-    "192.168.1.15",
-    "127.0.0.1",
-    "192.168.1.7",
-    "86.45.36.88",
-    "home-control-dbba5bec072c.herokuapp.com",
-    "*gitpod.io",
-    "localhost"
-]
+ALLOWED_HOSTS = json.loads(os.getenv("ALLOWED_HOSTS", '["127.0.0.1"]'))
+
 
 # API credentials loaded from environment variables
 API_USERNAME = os.getenv("DJANGO_API_USERNAME")
@@ -170,14 +164,8 @@ else:
 
 # CSRF trusted origins configuration for securing
 #  cross-site request forgery protection
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.gitpod.io",
-    "https://*.heroku.com",
-    "https://192.168.1.15",
-    "https://192.168.1.7",
-    "https://86.45.36.88",
-    "https://home-control-dbba5bec072c.herokuapp.com",
-]
+CSRF_TRUSTED_ORIGINS = json.loads(os.getenv("CSRF_TRUSTED_ORIGINS", '[]'))
+
 
 # Authentication password validators
 AUTH_PASSWORD_VALIDATORS = [
