@@ -155,12 +155,13 @@ else:
     # Production static and media files configuration
     STATIC_URL = "/static/"
     STATICFILES_STORAGE = "whitenoise.storage.\
-        CompressedManifestStaticFilesStorage"
+    CompressedManifestStaticFilesStorage"
+
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     MEDIA_URL = "/media/"
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.\
-        MediaCloudinaryStorage"
+    MediaCloudinaryStorage"
 
 # CSRF trusted origins configuration for securing
 #  cross-site request forgery protection
@@ -170,16 +171,20 @@ CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(',')
 # Authentication password validators
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.\
+        UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation.\
+        MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation.\
+        CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation.\
+        NumericPasswordValidator",
     },
 ]
 

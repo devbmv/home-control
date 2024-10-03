@@ -1,6 +1,8 @@
 ## ESP32 Integration
 
-The project integrates **ESP32** devices to control and manage smart home appliances, such as lights, through a Wi-Fi connection. The ESP32 interacts with the Django backend over HTTP and WebSockets, allowing real-time control and monitoring of the devices. This interaction is crucial for sending and receiving commands, updating device states, and handling firmware updates remotely.
+   The project integrates ESP32 devices to control and manage smart home appliances, such as lights, through a Wi-Fi connection. The ESP32 interacts with the Django backend over HTTP and WebSockets, allowing real-time control and monitoring of the devices. This interaction is crucial for sending and receiving commands, updating device states, and handling firmware updates remotely.
+
+   It is important to note that this project represents an initial phase and is not a fully implemented, polished solution. While it demonstrates the basic functionality of smart home control, there are several areas that require further development, including enhanced security measures, performance optimizations, and additional features. Future iterations will address these aspects to ensure a more robust, secure, and scalable system.
 
 ### Key Features of the ESP32 Integration:
 

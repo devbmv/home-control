@@ -1,6 +1,10 @@
+<a name="top"></a>
+
 # Smart Home Control
 
-**Smart Home Control** is a full-stack web application that provides users with the ability to manage, monitor, and automate their smart home devices from a single platform. This project simplifies home automation, allowing users to control home devices remotely, securely, and efficiently.
+**Smart Home Control** Smart Home Control is a full-stack web application that provides users with the ability to manage, monitor, and automate their smart home devices from a single platform. This project simplifies home automation, allowing users to control home devices remotely, securely, and efficiently.
+
+It is important to note that this project represents an initial phase of system and is not yet fully implemented. While it demonstrates core functionality, it still requires additional work in terms of security, performance enhancements, and feature expansion to provide a more robust and secure experience for users. Future updates will address these areas to ensure long-term scalability and reliability.
 
 ![Full Main Page](static/images/screenshots/full_main_page.PNG)
 
@@ -39,10 +43,9 @@
     - [Forking](#forking)
 12. [Credits](#credits)
 13. [Acknowledgements](#acknowledgements)
-> **Note**: Please refer to the [Legal Disclaimer & Security Considerations](#legal-disclaimer--security-considerations) section at the end of this document before deploying the application to ensure safe and secure usage.
+    > **Note**: Please refer to the [Legal Disclaimer & Security Considerations](#legal-disclaimer--security-considerations) section at the end of this document before deploying the application to ensure safe and secure usage.
 
-
----
+## [Back to top](#top)
 
 ## Site & User Goals
 
@@ -61,6 +64,8 @@ This section outlines the primary goals for the **Smart Home Control** platform.
 
 - **Monitor & Alerts**: Users need real-time updates on the status of their devices.
 
+[Back to top](#top)
+
 ---
 
 ## User Experience Design
@@ -73,6 +78,8 @@ The development process used the Agile methodology to prioritize and implement f
 - **Should Have**: Real-time monitoring, notification system.
 - **Could Have**: Multi-user support, enhanced security features.
 
+[Back to top](#top)
+
 ---
 
 ## The Strategy Plane
@@ -81,6 +88,8 @@ The development process used the Agile methodology to prioritize and implement f
 
 - **Target Audience**: Homeowners and renters looking to automate and monitor their homes efficiently.
 - **Business Goals**: Establish a secure, user-friendly platform for smart home management, encouraging user interaction and long-term retention.
+
+[Back to top](#top)
 
 ---
 
@@ -143,6 +152,8 @@ The development process used the Agile methodology to prioritize and implement f
 
   ![Number of Room Icon](static/images/screenshots/number_of_room_icon.PNG)
 
+[Back to top](#top)
+
 ---
 
 ## The Skeleton Plane
@@ -176,6 +187,8 @@ Wireframes were created to map out the layout and user interface of the platform
   ![Send Message to Server](static/images/screenshots/send_mssage_to_server.PNG)
 
 - **User Management Page**: Admin users can manage permissions for other users.
+
+[Back to top](#top)
 
 ## Database Design
 
@@ -225,8 +238,8 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      - `server_check_interval`: How often the system checks the server (in seconds).
      - `email_notifications`, `push_notifications`, `two_factor_authentication`: Boolean fields indicating user preferences.
      - `m5core2_ip`: The IP address of the user's smart device (e.g., M5Core2).
-   - **Relationships**:
-     - A `UserSettings` model has a **One-to-One** relationship with the `User` model, meaning each user has their own settings.
+   - **Relationships**: - A `UserSettings` model has a **One-to-One** relationship with the `User` model, meaning each user has their own settings.
+     [Back to top](#top)
 
 ### Relationships Summary:
 
@@ -248,7 +261,7 @@ The database was structured using Django’s ORM to manage user accounts, smart 
 4. **User to UserSettings**: One-to-One (1:1) relationship.
    - Each user has unique settings related to notifications, themes, and smart device behavior.
 
----
+## [Back to top](#top)
 
 ## Tools and Technologies
 
@@ -274,6 +287,8 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      }
      ```
 
+   [Back to top](#top)
+
 4. **Heroku**:
 
    - The application is deployed on **Heroku**, which handles the hosting and scaling of the application.
@@ -295,6 +310,8 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
      ```
    - Additionally, `django-resized` is used for optimizing and resizing images before they are stored.
+
+[Back to top](#top)
 
 6. **Django Channels**:
 
@@ -338,6 +355,8 @@ The database was structured using Django’s ORM to manage user accounts, smart 
 - **Real-time Progress Feedback**: Users can view live status updates of the firmware upload and installation process, ensuring transparency and tracking for the operation.
 - **Error Handling**: In case of any issues during the upload or installation process, the user will receive appropriate error messages.
 
+[Back to top](#top)
+
 ---
 
 ## Testing
@@ -348,16 +367,33 @@ The site was tested across multiple devices (desktop, tablet, smartphone) to ens
 
 ### Validator Testing
 
-- **HTML**: Validated with [W3C HTML Validator](https://validator.w3.org/).
+- **HTML**: Validated with [W3C HTML Validator](https://validator.w3.org/).<br>
+It's showing a few errors because of the DTL tags used.
+![html_validator](static\images\screenshots\html_testing.PNG)
+
+
 - **CSS**: Passed through [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
+![css_validator](static\images\screenshots\css_validator.PNG)
+
 - **JavaScript**: No major errors detected using JSHint.
 - **Python**: Validated with PEP8 for code style.
+![PEP8_Validator](static\images\screenshots\pep8_corrected.PNG)
 
 ### Manual Testing
 
-- Users can successfully add, edit, and delete devices.
+- Users can successfully add, edit, and delete room and light.
+![add_light](static\images\screenshots\add_light_form.PNG)
+![add_room](static\images\screenshots\add_room_form.PNG)
+![delete_](static\images\screenshots\delete_light.PNG)
+
 - Automations trigger correctly based on user input.
+![trigger_light](static\images\screenshots\trigger_light.PNG)
 - Notifications are sent in real-time for monitored events.
+![real_time_monitoring](static\images\screenshots\rooms.PNG)
+![real_time_monitoring](static\images\screenshots\update_progress_bar.PNG)
+![real_time_monitoring](static\images\screenshots\answer_from_server.PNG)
+
+[Back to top](#top)
 
 ---
 
@@ -365,8 +401,8 @@ The site was tested across multiple devices (desktop, tablet, smartphone) to ens
 
 ### Fixed Bugs
 
-- **Device Not Connecting**: Some devices did not connect to the platform. Fixed by adjusting the connection logic.
-- **Automation Not Triggering**: Some automations were not triggering as expected. Resolved by updating the scheduling algorithm.
+- **Device Not Connecting**: Some devices did not connect to the platform. Fixed by adjusting the connection logic change IP Adress or other logical instructions.
+
 
 ### Unfixed Bugs
 
@@ -401,6 +437,43 @@ To clone this repository:
    ```bash
    git clone https://github.com/username/smart-home-control.git
    ```
+[Back to top](#top)
+
+---
+
+## 12. Credits
+
+### Libraries and Tools
+
+This project was made possible with the help of several libraries and tools. Below is a list of key dependencies:
+
+- **Django**: A high-level Python web framework that was used to build the backend of this project.
+- **Bootstrap**: A CSS framework used for styling the web interface.
+- **Heroku**: A platform used to host and deploy the project in a live environment.
+- **Cloudinary**: A cloud-based service used for media file storage, such as images uploaded by users.
+- **Django Channels**: Used for adding real-time capabilities to the app, including WebSockets.
+- **PlatformIO**: A professional collaborative platform for embedded development, used for managing and deploying code on the ESP32 device.
+
+### Contributors
+
+- **devbmv**: Developer and project lead for this application.
+- **Open-Source Libraries**: Special thanks to the contributors of open-source projects and libraries that this project is built upon .
+
+[Back to top](#top)
+
+---
+
+## 13. Acknowledgements
+
+Special thanks to the following resources and individuals who helped make this project possible:
+- My wife, for her constant moral support and encouragement throughout the project.
+- My mentor, **Juliia**, for her invaluable guidance, feedback, and mentorship throughout the development process, helping me stay on track, refine my approach, and grow as a developer.
+- A special thanks to all the **professors and educators at Code Institute** for their constant support and invaluable teachings, which have been instrumental in shaping my knowledge and skills throughout this project.
+- A heartfelt thank you to the **Student Care** team for their exceptional understanding and privileged support during the urgent situations I encountered.
+- **GitHub Community**: For providing a platform for version control, collaboration, and continuous integration.
+- **Stack Overflow**: For offering invaluable help and answers to complex questions.
+- **Django Documentation**: For being an excellent resource in understanding how to implement features and best practices in security.
+- **PlatformIO Community**: For their support in troubleshooting ESP32 integration.
 
 
 ---
@@ -409,7 +482,7 @@ To clone this repository:
 
 ### Disclaimer
 
-This project, **Smart Home Control**, is intended solely for **educational purposes**. The author of this project assumes **no liability or responsibility** for any damage, harm, or unintended consequences that may arise from the use, modification, or deployment of this software. Users who choose to implement this software or integrate it into their systems do so **at their own risk**.
+This project, **Smart Home Control**, is intended solely for **educational purposes**, created by a student as part of a learning experience. The author of this project assumes **no liability or responsibility** for any damage, harm, or unintended consequences that may arise from the use, modification, or deployment of this software.More  **significant improvements and refinements** are required for it to become a fully functioning home control ecosystem. Users who choose to implement this software or integrate it into their systems do so **at their own risk**.
 
 - This project is provided "as-is" without any warranties, guarantees, or assurances regarding its safety, reliability, or fitness for a particular purpose.
 - Any damage caused by improper use, setup, or integration into third-party devices or networks is **solely the responsibility** of the user.
@@ -418,34 +491,37 @@ This project, **Smart Home Control**, is intended solely for **educational purpo
 ### Additional Security Considerations
 
 1. **Port Forwarding**: If you plan to access your home automation system remotely, you may consider using port forwarding to allow external access to your server or devices. However, doing so can introduce serious security risks, such as unauthorized access to your home network.
+
    - **Use VPN**: For enhanced security, consider setting up a Virtual Private Network (VPN) to remotely access your home network securely rather than exposing your devices through port forwarding.
    - **Firewall Configuration**: Ensure your firewall is properly configured to block any unwanted traffic and to allow only necessary connections to your devices.
 
 2. **Strong Passwords**: Ensure that all passwords, including those for the Django admin interface, your Wi-Fi network, and any API or device credentials, are strong and secure. Use a combination of uppercase and lowercase letters, numbers, and symbols.
 
 3. **SSL/TLS Encryption**: It is strongly recommended that you use SSL/TLS encryption for all communication between the server (Django) and the devices (ESP32), especially if you plan to expose the system to the internet. This can help protect against Man-in-the-Middle (MitM) attacks.
+
    - Set up SSL certificates for your server.
-   - Use `https` for web traffic and secure protocols for any device communications.
+   - Use https for web traffic and secure protocols for any device communications.
 
 4. **Regular Updates**: Ensure that you keep the server, devices (ESP32), and libraries up-to-date with the latest security patches and firmware updates.
+
    - Check regularly for updates to the project’s dependencies and apply them where necessary.
 
 5. **Access Control**: Only allow authorized users to manage or access your home devices. Consider implementing **role-based access control** (RBAC) and **two-factor authentication** (2FA) for critical systems.
 
 6. **Cloud Services Security**: If you are using cloud services like **Heroku** or **Cloudinary**:
+
    - Ensure that your API keys and credentials are not exposed in the source code.
-   - Use environment variables to store sensitive information, such as `SECRET_KEY`, database credentials, and any third-party API tokens.
+   - Use environment variables to store sensitive information, such as SECRET_KEY, database credentials, and any third-party API tokens.
 
 7. **Public Deployment**: If you deploy this project on a public platform (e.g., Heroku), be cautious about exposing it to the internet. Misconfiguration could lead to unauthorized access. Always follow best practices for securing a web application, including **securing the admin interface**, **disabling unnecessary features in production**, and **monitoring logs for suspicious activity**.
 
----
+## [Back to top](#top)
 
 ## Security Best Practices for Smart Home Devices
 
 When integrating IoT devices such as the ESP32, follow these additional guidelines to secure your smart home system:
 
 1. **Device Isolation**: Consider setting up a separate network or VLAN for IoT devices. This ensures that even if a device is compromised, the attacker won't have access to the rest of your network.
-   
 2. **Update Firmware Regularly**: IoT devices often have vulnerabilities that are patched through firmware updates. Regularly update the firmware of the ESP32 and any other connected devices to mitigate known security risks.
 
 3. **Secure Communication**: Use **HTTPS** and **WebSocket Secure (WSS)** protocols for secure communication between the Django server and ESP32 devices. This will ensure that data is transmitted securely over the network, preventing unauthorized interception.
@@ -453,6 +529,8 @@ When integrating IoT devices such as the ESP32, follow these additional guidelin
 4. **Disable Unused Services**: Disable any services or ports on the ESP32 that are not in use. Reducing the number of open ports decreases the attack surface.
 
 5. **Logging and Monitoring**: Implement logging and monitoring tools on your Django server to track access attempts and potential security breaches. Configure notifications for suspicious activity or failed login attempts.
+
+## [Back to top](#top)
 
 ### Further Reading
 
@@ -466,3 +544,4 @@ For more detailed information on securing IoT and web applications, consider rev
 
 By following these security guidelines and taking appropriate precautions, you can help mitigate risks and protect your home automation system from unauthorized access or exploitation.
 
+[Back to top](#top)
