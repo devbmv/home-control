@@ -4,7 +4,7 @@
 
 ![Full Main Page](static/images/screenshots/full_main_page.PNG)
 
-### [Link to Live Website](https://smart-home-control-app.herokuapp.com/)
+### [Link to Live Website](https://home-control-dbba5bec072c.herokuapp.com/)
 
 ---
 
@@ -41,8 +41,6 @@
 13. [Acknowledgements](#acknowledgements)
 
 ---
-
-
 
 ## Site & User Goals
 
@@ -90,37 +88,37 @@ The development process used the Agile methodology to prioritize and implement f
 
 - **User Authentication:** Users can log in, log out, and manage their profiles.
 - **Room Management:** Users can add, edit, and delete rooms.
-- **Light Management:** Each room can have multiple lights, which users can toggle on or off via the web interface then send command to  ESP32 device.
+- **Light Management:** Each room can have multiple lights, which users can toggle on or off via the web interface then send command to ESP32 device.
 - **ESP32 Integration:** The project sends requests to the ESP32 device to control the lights.
 - **User Settings:** Users can configure personal preferences such as email notifications, light scheduling, and device IP management.
 - **Background Task:** A background thread checks the status of the home automation system periodically.
 
 - **Device Management**: Users can add, configure, and control lights and rooms.
-  
+
   ![Add Light Form](static/images/screenshots/add_light_form.PNG)
 
 - **Room Management**: Users can add and manage rooms .
-  
+
   ![Add Room Form](static/images/screenshots/add_room_form.PNG)
 
-- **Automation**: Users can set up actions  for their devices.
+- **Automation**: Users can set up actions for their devices.
 - **Real-time Monitoring**:Users can view live data from server(Not fully implemented) (e.g. get DEBUG will return current state of this var and so on).
-  
+
   ![Answer From Server](static/images/screenshots/answer_from_server.PNG)
-  - **Notifications**: Users receive audio and visual alerts when server is offline or is back  online events .
+
+  - **Notifications**: Users receive audio and visual alerts when server is offline or is back online events .
 
   ![Dynamic Offline State Icon](static/images/screenshots/dinamic_offline_state_icon.PNG)
-
 
 ### Existing Features
 
 - **User Authentication**: Users can sign up, log in, and manage their accounts.
-  
+
   ![Sign In Form](static/images/screenshots/sign_in_form.PNG)
   ![Register Form](static/images/screenshots/register_form.PNG)
 
 - **Device Dashboard**: A central dashboard for controlling all connected devices for logged in users.
-  
+
   ![Main Body](static/images/screenshots/main_body.PNG)
 
 - **Role-based Permissions**: Admin users can manage access for other household members.
@@ -132,7 +130,7 @@ The development process used the Agile methodology to prioritize and implement f
   ![Dynamic Icon](static/images/screenshots/dynamic_icon.PNG)
 
 - **Logged-in State Icon**: Displays when the user is logged in.
-  
+
   ![Logged In Icon](static/images/screenshots/logged_in_icon.PNG)
 
 - **Logged-off State Icon**: Displays when the user is logged off.
@@ -140,7 +138,7 @@ The development process used the Agile methodology to prioritize and implement f
   ![Logged Off Icon](static/images/screenshots/logged_off_icon.PNG)
 
 - **Number of Rooms Icon**: Displays the number of rooms managed by the user.
-  
+
   ![Number of Room Icon](static/images/screenshots/number_of_room_icon.PNG)
 
 ---
@@ -154,25 +152,25 @@ Below is the **Entity Relationship Diagram (ERD)**, which visualizes the structu
 ![ERD](ERD-1.png)
 
 The ERD showcases the following relationships:
+
 - **User:** This model represents the users in the system. Each user can have multiple rooms.
 - **Room:** Each room is associated with a user and can contain multiple lights.
 - **Light:** This model represents individual lights in a room. Lights have attributes like state (on/off) and name.
 - **UserSettings:** This model stores individual user preferences like notifications, preferred language, IP address of the ESP32 device, and more.
 
-
 ### Wireframes
-
 
 Wireframes were created to map out the layout and user interface of the platform. These include designs for:
 
 - **Home Dashboard**: Displays device statuses and control when user is logged in:
-  
+
   ![Main Page - User Logged In](static/images/screenshots/main_page_user_loggedin.PNG)
+
 - and when user is logged out:
   ![Main Page - User Logged Off](static/images/screenshots/main_page_user_loggedoff.PNG)
 
 - **Device Management Page**: Allows users to interact with server through message(Not fully implemented).
-  
+
   ![Send Message to Server](static/images/screenshots/send_mssage_to_server.PNG)
 
 - **User Management Page**: Admin users can manage permissions for other users.
@@ -184,10 +182,12 @@ The database was structured using Django’s ORM to manage user accounts, smart 
 ### Key Models:
 
 1. **User** (Django’s built-in User model):
+
    - Represents the system users.
    - Each user can own multiple rooms, and each room can contain multiple smart devices (lights).
 
 2. **Room**:
+
    - Represents a physical room in the user's home where smart devices are installed.
    - **Fields**:
      - `name`: The name of the room.
@@ -196,6 +196,7 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      - A `Room` has a **One-to-Many** relationship with the `User` model, meaning one user can have multiple rooms.
 
 3. **Light**:
+
    - Represents individual smart devices (lights) that are controlled by the user.
    - **Fields**:
      - `name`: The name of the light.
@@ -207,6 +208,7 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      - A `Light` has a **Many-to-Many** relationship with the `Choice` model, meaning each light can have multiple configurations.
 
 4. **Choice**:
+
    - Represents different options or configurations for the smart devices (lights).
    - **Fields**:
      - `name`: The name of the choice (e.g., "On","Off").
@@ -227,14 +229,17 @@ The database was structured using Django’s ORM to manage user accounts, smart 
 ### Relationships Summary:
 
 1. **User to Room**: One-to-Many (1:M) relationship.
+
    - Each user can have multiple rooms.
    - Each room belongs to a specific user.
 
 2. **Room to Light**: One-to-Many (1:M) relationship.
+
    - Each room can have multiple lights.
    - Each light belongs to a specific room.
 
 3. **Light to Choice**: Many-to-Many (M:M) relationship.
+
    - Each light can have multiple configurations (choices).
    - Each choice can apply to multiple lights.
 
@@ -246,15 +251,18 @@ The database was structured using Django’s ORM to manage user accounts, smart 
 ## Tools and Technologies
 
 1. **Django**:
-   - Django is used as the backend framework for handling database operations, user authentication, and business logic. 
+
+   - Django is used as the backend framework for handling database operations, user authentication, and business logic.
    - The project makes extensive use of Django’s built-in apps, such as `django.contrib.auth` for user management and `django.contrib.admin` for the admin interface.
    - Middleware such as `SecurityMiddleware`, `SessionMiddleware`, and custom middleware like `UserSettingsMiddleware` are used to handle requests and manage user sessions securely.
    - Template rendering is done through Django's template engine, with templates stored in the `templates` directory.
 
 2. **Bootstrap**:
-   - Bootstrap was using for pages  style .
+
+   - Bootstrap was using for pages style .
 
 3. **SQLite (Development) / PostgreSQL (Production)**:
+
    - **SQLite** is used as the default local database for development, configured through Django’s ORM.
    - In production, **PostgreSQL** is used to handle more complex queries and larger datasets. The database configuration is managed using `dj_database_url`, which pulls the database URL from environment variables.
    - Example:
@@ -265,7 +273,8 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      ```
 
 4. **Heroku**:
-   - The application is deployed on **Heroku**, which handles the hosting and scaling of the application. 
+
+   - The application is deployed on **Heroku**, which handles the hosting and scaling of the application.
    - Heroku’s environment is configured with Django’s settings, including support for static files via `WhiteNoise` and media file storage via Cloudinary.
    - Specific settings for static and media files are determined based on the environment (`DEBUG` mode):
      ```python
@@ -276,7 +285,8 @@ The database was structured using Django’s ORM to manage user accounts, smart 
      ```
 
 5. **Cloudinary**:
-   - **Cloudinary** is used for storing and serving media files (such as user-uploaded images). 
+
+   - **Cloudinary** is used for storing and serving media files (such as user-uploaded images).
    - It allows the application to store media externally in a cloud service, freeing up local storage and ensuring quick access to images.
    - The connection to Cloudinary is configured via the `CLOUDINARY_URL` environment variable:
      ```python
@@ -285,17 +295,19 @@ The database was structured using Django’s ORM to manage user accounts, smart 
    - Additionally, `django-resized` is used for optimizing and resizing images before they are stored.
 
 6. **Django Channels**:
+
    - **Django Channels** is used to enable real-time communication in the application, supporting WebSockets and asynchronous tasks. This is essential for handling live updates and interactions, particularly with smart home devices like lights and sensors( planing in feature).
    - The current implementation allows for basic real-time status updates of vars states.
 
-   - **Planned Future Features**: 
+   - **Planned Future Features**:
+
      - There are several advanced features planned for future implementation using Django Channels, including:
        - **Live Device Monitoring**: Users will be able to monitor the status of multiple smart devices in real-time, such as receiving updates from sensors or checking the live status of connected devices.
        - **Instant Notifications**: The system will be capable of sending real-time notifications and alerts when specific events occur, such as security breaches, motion detection, or temperature changes.
        - **Two-Way Communication**: The app will enable two-way communication with devices, allowing for real-time feedback and control. For example, lights can send back their status after a command is issued, ensuring synchronization between the user interface and device state.
 
-
    - **Current Setup**:
+
      - Django Channels is currently configured with an in-memory backend for handling real-time communication:
        ```python
        ASGI_APPLICATION = "home_control_project.asgi.application"
@@ -309,19 +321,20 @@ The database was structured using Django’s ORM to manage user accounts, smart 
 
      ```
 
+     ```
+
 7. **Django Extensions**:
+
    - The project uses `django-extensions` for various development utilities, such as enhanced model management, shell utilities, and custom scripts.
 
+8. **Firmware Updates with Progress Feedback**
 
- 8. **Firmware Updates with Progress Feedback**
- - This feature allows users to initiate remote firmware updates for the ESP32 device and monitor the progress in real-time through the web interface.
+- This feature allows users to initiate remote firmware updates for the ESP32 device and monitor the progress in real-time through the web interface.
 
 - **Upload Firmware**: The user can upload a firmware file through the Django web interface.
 - **Remote Firmware Update**: Once uploaded, the firmware is transferred from the Django server to the ESP32 for the update process.
 - **Real-time Progress Feedback**: Users can view live status updates of the firmware upload and installation process, ensuring transparency and tracking for the operation.
 - **Error Handling**: In case of any issues during the upload or installation process, the user will receive appropriate error messages.
-
-   
 
 ---
 
@@ -385,3 +398,4 @@ To clone this repository:
 2. Run the following command:
    ```bash
    git clone https://github.com/username/smart-home-control.git
+   ```

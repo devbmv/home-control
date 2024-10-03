@@ -40,5 +40,5 @@ db.sqlite3
 # Fișiere de compilare
 *.DS_Store
 *.cache/
-
+db.sqlite3
 env.py
