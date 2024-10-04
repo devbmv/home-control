@@ -1,5 +1,3 @@
-<a name="top"></a>
-
 # Smart Home Control
 
 **Smart Home Control** Smart Home Control is a full-stack web application that provides users with the ability to manage, monitor, and automate their smart home devices from a single platform. This project simplifies home automation, allowing users to control home devices remotely, securely, and efficiently.
