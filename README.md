@@ -124,7 +124,7 @@ The development process used the Agile methodology to prioritize and implement f
 
 - **User Authentication**: Users can sign up, log in, and manage their accounts.
 
-  ![Sign In Form](static/images/screenshots/sign_in_form.PNG)
+  ![Sign In Form](static/images/screenshots/sign_in1.PNG)
   ![Register Form](static/images/screenshots/register_form.PNG)
 
 - **Device Dashboard**: A central dashboard for controlling all connected devices for logged in users.
@@ -152,7 +152,7 @@ The development process used the Agile methodology to prioritize and implement f
   ![Number of Room Icon](static/images/screenshots/number_of_room_icon.PNG)
 
 - **Remote Firmware Update**: Users can remotely update the firmware of their smart home devices to ensure they are running the latest version with security patches and new features.
-  ![Update_page](static\images\screenshots\update_firmware.PNG)
+  ![Update_page](static/images/screenshots/update_firmware.PNG)
 [Back to top](#top)
 
 ---
@@ -370,29 +370,29 @@ The site was tested across multiple devices (desktop, tablet, smartphone) to ens
 
 - **HTML**: Validated with [W3C HTML Validator](https://validator.w3.org/).<br>
 It's showing a few errors because of the DTL tags used.
-![html_validator](static\images\screenshots\html_testing.PNG)
+![html_validator](static/images/screenshots/html_testing.PNG)
 
 
 - **CSS**: Passed through [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
-![css_validator](static\images\screenshots\css_validator.PNG)
+![css_validator](static/images/screenshots/css_validator.PNG)
 
 - **JavaScript**: No major errors detected using JSHint.
 - **Python**: Validated with PEP8 for code style.
-![PEP8_Validator](static\images\screenshots\pep8_corrected.PNG)
+![PEP8_Validator](static/images/screenshots/pep8_corrected.PNG)
 
 ### Manual Testing
 
 - Users can successfully add, edit, and delete room and light.
-![add_light](static\images\screenshots\add_light_form.PNG)
-![add_room](static\images\screenshots\add_room_form.PNG)
-![delete_](static\images\screenshots\delete_light.PNG)
+![add_light](static/images/screenshots/add_light_form.PNG)
+![add_room](static/images/screenshots/add_room_form.PNG)
+![delete_](static/images/screenshots/delete_light.PNG)
 
 - Automations trigger correctly based on user input.
-![trigger_light](static\images\screenshots\trigger_light.PNG)
+![trigger_light](static/images/screenshots/trigger_light.PNG)
 - Notifications are sent in real-time for monitored events.
-![real_time_monitoring](static\images\screenshots\rooms.PNG)
-![real_time_monitoring](static\images\screenshots\update_progress_bar.PNG)
-![real_time_monitoring](static\images\screenshots\answer_from_server.PNG)
+![real_time_monitoring](static/images/screenshots/rooms.PNG)
+![real_time_monitoring](static/images/screenshots/update_progress_bar.PNG)
+![real_time_monitoring](static/images/screenshots/answer_from_server.PNG)
 
 [Back to top](#top)
 
